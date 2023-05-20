@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace ClassroomHub.Core.Entities
 {
@@ -6,6 +8,6 @@ namespace ClassroomHub.Core.Entities
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        List<Student> Students { get; set; }        
+        List<Student> Students { get; set; }
     }
 }

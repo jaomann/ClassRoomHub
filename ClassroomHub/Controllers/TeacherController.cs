@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ClassroomHub.Web.Controllers
+namespace ClassRoomHub.Web.Controllers
 {
     public class TeacherController : Controller
     {
@@ -27,7 +27,7 @@ namespace ClassroomHub.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
-        {            
+        {
             try
             {
                 return RedirectToAction(nameof(Index));

@@ -1,6 +1,6 @@
 ﻿namespace ClassRoomHub.Web.ViewModels
 {
-    public class StudentViewModel
+    public class TeacherViewModel
     {
         public string Name { get; set; }
         public string Surname { get; set; }

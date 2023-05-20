@@ -1,4 +1,6 @@
-namespace ClassroomHub.Web.Models
+using System;
+
+namespace ClassRoomHub.ViewModels
 {
     public class ErrorViewModel
     {

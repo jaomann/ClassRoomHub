@@ -1,0 +1,19 @@
+﻿@using ClassRoomHub.Web.ViewModels;
+@model List<ActivitytoStudentViewModel>
+<div class="ActivityContainer">
+    <div class="Activity">
+    <h2 class="text-center">Atividades</h2>
+        <div class="itens">
+            @foreach(var activity in Model)
+            {
+                <h3>@activity.Title</h3>
+                <p>@activity.Description</p>
+                <div class="dataActivity">
+                <p class="text-muted">@activity.DueDate.ToString("dd/MM/yy") - @activity.ScorePoints pontos</p>
+                <p class="text-muted">@activity.ModuleName - @activity.TeacherName</p>
+                </div>
+                <button>Iniciar</button>
+            }
+        </div>
+    </div>
+</div>
