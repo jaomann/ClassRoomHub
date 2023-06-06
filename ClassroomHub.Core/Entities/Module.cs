@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ClassroomHub.Core.Entities
 {
-    internal class Module
+    public class Module : EntityBase
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -13,5 +13,12 @@ namespace ClassroomHub.Core.Entities
         public DateTime End { get; set; }
         public Guid TeacherId { get; set; }
         public Teacher Teacher { get; set; }
+        public Guid CourseId { get; set; }
+        public Course Course { get; set; }  
+        public Guid ClassId { get; set; }
+        public Class Class { get; set; }
+        public Guid ActivityId { get; set; }
+        public List<Activity> Activity { get; set; }
+
     }
 }

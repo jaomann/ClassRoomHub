@@ -1,17 +1,20 @@
-﻿using ClassroomHub.Core.Enums;
+﻿
 using System;
 using System.Collections.Generic;
 
 namespace ClassroomHub.Core.Entities
 {
-    internal class Teacher
+    public class Teacher : EntityBase
     {
         public string Name { get; }
         public string Surname { get; }
         public string Email { get; }
         public Guid UserGuid { get; }
-        public User user { get; }
+        public User User { get; }
         public Guid ModuleId { get; }
-        List<Module> Modules { get; }
+        public List<Module> Module { get; }
+        public Guid ActivityId { get; set; }
+        public Activity Activity { get; set; }
+
     }
 }

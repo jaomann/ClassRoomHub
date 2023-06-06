@@ -1,8 +1,11 @@
-﻿namespace ClassroomHub.Core.Entities
+﻿using System;
+
+namespace ClassroomHub.Core.Entities
 {
-    internal class Grade
+    public class Grade : EntityBase
     {
-        public Delivery DeliveryId { get; set; }
         public int GradeValue { get; set; }
+        public Guid DeliveryId { get; set; }
+        public Delivery Delivery { get; set; }
     }
 }

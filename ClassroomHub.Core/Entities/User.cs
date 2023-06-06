@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 
 namespace ClassroomHub.Core.Entities
 {
-    internal class User
+    public class User : EntityBase
     {
-        private Guid Id { get; set; }
-        public string UserName { get; set; }
-        public string PassWord { get { return "Você não pode ter acesso."; } set {; } }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public Student Student { get; set; }
+        public Guid StudentID { get; set; }
+        public Teacher Teacher { get; set; }
+        public Guid TeacherID { get; set; }
     }
 }

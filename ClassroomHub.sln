@@ -5,11 +5,13 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassroomHub.Web", "ClassroomHub\ClassroomHub.Web.csproj", "{4EA4F2C3-3354-4792-B1BA-B1A7FD486A57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassroomHub.Core", "ClassroomHub.Core\ClassroomHub.Core.csproj", "{ED4937B7-F315-4A71-89EE-028BB784A61E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassroomHub.Core", "ClassroomHub.Core\ClassroomHub.Core.csproj", "{ED4937B7-F315-4A71-89EE-028BB784A61E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassroomHub.Services", "ClassroomHub.Services\ClassroomHub.Services.csproj", "{F1CDFA00-C02D-409C-B7EE-B8C621D105B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassroomHub.Services", "ClassroomHub.Services\ClassroomHub.Services.csproj", "{F1CDFA00-C02D-409C-B7EE-B8C621D105B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassroomHub.Data", "ClassroomHub.Data\ClassroomHub.Data.csproj", "{A501E40D-F3DF-4018-9099-71A66A964799}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassroomHub.Data", "ClassroomHub.Data\ClassroomHub.Data.csproj", "{A501E40D-F3DF-4018-9099-71A66A964799}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjection", "DependencyInjection\DependencyInjection.csproj", "{5AB188E9-8FCB-492E-9BC1-6CEC1824E6A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{A501E40D-F3DF-4018-9099-71A66A964799}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A501E40D-F3DF-4018-9099-71A66A964799}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A501E40D-F3DF-4018-9099-71A66A964799}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AB188E9-8FCB-492E-9BC1-6CEC1824E6A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AB188E9-8FCB-492E-9BC1-6CEC1824E6A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AB188E9-8FCB-492E-9BC1-6CEC1824E6A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AB188E9-8FCB-492E-9BC1-6CEC1824E6A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

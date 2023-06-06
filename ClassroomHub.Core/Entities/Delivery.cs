@@ -4,12 +4,14 @@ using System.Text;
 
 namespace ClassroomHub.Core.Entities
 {
-    internal class Delivery
+    public class Delivery : EntityBase
     {
         public DateTime SubmissionDate { get; set; }
         public Guid ActivityGuid { get; set; }
         public Activity Activity { get; set; }
         public Guid StudentGuid { get; set; }
-        public Student student { get; set; }
+        public Student Student { get; set; }
+        public Guid GradeId { get; set; }
+        public Grade Grade { get; set; }
     }
 }

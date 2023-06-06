@@ -1,0 +1,25 @@
+﻿@using ClassroomHub.Core.Entities;
+@model User;
+
+<table class="table table-striped table-hover text-center table-dark">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Password</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(x => x.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(x => x.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(x => x.Password)
+            </td>
+        </tr>
+    </tbody>
+</table>
