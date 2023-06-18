@@ -1,0 +1,22 @@
+﻿@model ClassroomHub.Web.ViewModels.UserViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="LoginContainer">
+    <div class="login">
+        <h2>Login</h2>
+        <form asp-asp-controller="Login" asp-action="Index" method="Post">
+            <div>
+                @Html.TextBoxFor(x => x.Email, new{Placeholder = "Email", @class="input"})
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+            <div>
+                @Html.PasswordFor(x => x.Password, new{Placeholder = "Senha", @class="input"})
+                @Html.ValidationMessageFor(x => x.Birthday)
+            </div>
+            <div class="box-footer">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+</div>

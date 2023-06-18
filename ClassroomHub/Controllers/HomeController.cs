@@ -1,4 +1,12 @@
-﻿using ClassRoomHub.ViewModels;
+﻿using AutoMapper;
+using ClassroomHub.Core.Contracts.Repositories;
+using ClassroomHub.Core.Contracts.Services;
+using ClassroomHub.Core.Entities;
+using ClassroomHub.Data.Repositories;
+using ClassroomHub.Services;
+using ClassroomHub.Web.AutoMapper;
+using ClassroomHub.Web.ViewModels;
+using ClassRoomHub.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,27 +19,9 @@ namespace ClassRoomHub.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
             return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

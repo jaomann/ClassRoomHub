@@ -1,0 +1,27 @@
+﻿@model ClassroomHub.Web.ViewModels.UserViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+<div class="RegisterContainer">
+   <div class="login">
+        <h2>Cadastro</h2>
+        <form asp-controller="Register" asp-action="Register" method="Post">
+            <div>
+                @Html.TextBoxFor(x => x.Email, new{Placeholder = "Email", @class="input"})
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+            <div>
+                @Html.TextBoxFor(x => x.Birthday, new{Placeholder = "Nascimento", @class="input"})
+                @Html.ValidationMessageFor(x => x.Birthday)
+            </div>
+            <div>
+                @Html.PasswordFor(x => x.Password, new{Placeholder = "Senha", @class="input"})
+                @Html.ValidationMessageFor(x => x.Birthday)
+            </div>
+            <div class="box-footer">
+                <button type="submit">Cadastrar</button>
+                <p>Já tem cadastro?<a asp-controller="Login" asp-action="Index"> Faça login.</a></p>
+            </div>
+        </form>
+   </div>
+</div>

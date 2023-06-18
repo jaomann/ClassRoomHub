@@ -1,13 +1,20 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-<div class="HomeContainer">
-   <div class="login">
-        <h2>Login</h2>
-        <form>
-            <input type="text" placeholder="Usuário" required>
-            <input type="password" placeholder="Senha" required>
-            <button type="submit">Entrar</button>
-        </form>
-   </div>
+﻿
+<div class="Home">
+    <div class="enter">
+        <h1>Boas vindas!</h1>
+        <div style="margin-top: 10%;">
+            <p><a asp-action="Index" asp-controller="Login">Já sou usuário do ClassroomHub</a></p>
+            <p><a asp-action="Index" asp-controller="Register">Sou novo aqui</a></p>
+        </div>
+    </div>
+    <div class="news">
+        <div class="news-card">
+            <h1>Noticias do dia</h1>
+            <div class="text-box" id="Text">"Cri... cri... cri."</div>
+            <div class="form">
+                 <input type="text" id="Message">
+                 <button onclick="newsmessage()">Digite algo</button>
+            </div>
+        </div>
+    </div>
 </div>

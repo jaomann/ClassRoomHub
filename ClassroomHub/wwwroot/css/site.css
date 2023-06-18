@@ -79,7 +79,16 @@ body {
 main{
     font-family: Helvetica, sans-serif
 }
-.HomeContainer {
+.LoginContainer {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: rgb(28, 36, 29)
+}
+.RegisterContainer {
     height: 100vh;
     margin: 0;
     display: flex;
@@ -107,8 +116,8 @@ main{
     border-radius: 4px;
     font-size: 16px;
 }
-.login button {
-    background-color: #4CAF50;
+.RegisterContainer .login button {
+    background-color: #45a049;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -117,8 +126,21 @@ main{
     cursor: pointer;
     font-size: 16px;
 }
-.login button:hover {
+.LoginContainer .login button {
+    background-color: #004798;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.RegisterContainer .login button:hover {
     background-color: #45a049;
+}
+ .LoginContainer .login button:hover {
+    background-color: #1861ac;
 }
 .ActivityContainer, .StudentContainer {
     padding: 50px;
@@ -163,4 +185,66 @@ button{
 button:hover {
     transform: scale(1.05);
     background-color: #45a049;
+}
+.box-footer{
+    display:flex;
+    justify-content: space-between;
+}
+.box-footer p{
+    margin-top:auto;
+}
+
+.Home {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    background-color: rgb(28, 36, 29)
+}
+.news-card h1{
+    background-color: black;
+    border-top-left-radius:25px;
+}
+.news-card {
+    text-align: center;
+    margin-top:5%;
+    margin-right: 15%;
+    height:60vh;
+    width:60vh;
+    background-color: #002c19ae;
+    border-radius: 25px;
+}
+.news-card .form{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 70%;
+}
+.text-box{
+    background-color: #ffffff12;
+}
+.enter {
+    text-align: center;
+    margin-top: 2%;
+    margin-left: 5%;
+    height: 60vh;
+    width: 120vh;
+    background-color: black;
+    border-radius: 25px;
+}
+.enter p{
+    background-color: white;
+    transition: background-color 0.5s ease;
+    color: black;
+    padding: 10px;
+    font-size: 20px;
+}
+.enter p:hover{
+    cursor:pointer;
+    background-color: rgb(0, 255, 60);
+}
+.enter a {
+    text-decoration: none;
+    color: black;
 }

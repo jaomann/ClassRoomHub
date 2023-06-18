@@ -7,7 +7,10 @@ namespace ClassroomHub.Core.Contracts.Services
 {
     public interface IBaseServices<T> where T : EntityBase
     {
-        void Create(T entity);
-        T GetById(Guid id);
+        void Create(User user);
+        IEnumerable<User> GetAll();
+        User GetById(Guid id);
+        void Update(User user);
+        void Delete(Guid id);
     }
 }
