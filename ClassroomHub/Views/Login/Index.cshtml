@@ -5,7 +5,7 @@
 <div class="LoginContainer">
     <div class="login">
         <h2>Login</h2>
-        <form asp-asp-controller="Login" asp-action="Index" method="Post">
+        <form asp-controller="Login" asp-action="Login" method="Post">
             <div>
                 @Html.TextBoxFor(x => x.Email, new{Placeholder = "Email", @class="input"})
                 @Html.ValidationMessageFor(x => x.Email)

@@ -7,5 +7,6 @@ namespace ClassroomHub.Core.Contracts.Repositories
 {
     public interface ICourseRepository : IBaseRepository<Course>
     {
+        Course GetByCourseName(string courseName);  
     }
 }

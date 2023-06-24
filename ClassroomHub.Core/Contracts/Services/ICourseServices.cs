@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ClassroomHub.Core.Entities;
+using System;
 
 namespace ClassroomHub.Core.Contracts.Services
 {
-    public interface ICourseServices
+    public interface ICourseServices : IBaseServices<Course>
     {
     }
 }

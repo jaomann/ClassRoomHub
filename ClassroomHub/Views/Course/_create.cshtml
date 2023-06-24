@@ -1,0 +1,24 @@
+﻿@using ClassroomHub.Web.ViewModels;
+@model CourseViewModel;
+
+<div class="modal-button">
+    <button><a href="#createCourse">Create</a></button>
+</div>
+<div id="createCourse" class="modals">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h2>Cadastrar curso</h2>
+                <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close"><a style="text-decoration: none; color: black;"href="#">&times;</a></button>
+            </div>
+            <form method="post" asp-controller="Course" asp-action="Create">
+                <label asp-for="Name" class="mb-0"></label>
+                @Html.TextBoxFor(x => x.Name, new{Placeholder = "Insira o nome do curso", Atrribute="width:100%", @class="form-control"})
+                @Html.ValidationMessageFor(x => x.Name)
+                <label asp-for="Description" class="mb-0"></label>
+                @Html.TextAreaFor(x => x.Description, new{Placeholder = "Descreva o curso", Attribute="width:100%", @class="form-control"})
+                <button style="margin:10px;"type="submit">Fim</button>
+            </form>  
+        </div>
+    </div>
+</div>

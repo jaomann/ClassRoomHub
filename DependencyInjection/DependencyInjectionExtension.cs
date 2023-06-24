@@ -17,6 +17,7 @@ namespace DependencyInjection
             services.AddScoped<IModuleServices, ModuleService>();
             services.AddScoped<IGradeServices, GradeService>();
             services.AddScoped<IDeliveryServices, DeliveryService>();
+            services.AddScoped<ICourseServices, CourseService>();
         }
         public static void AddRepositoryDependency(this IServiceCollection services)
         {

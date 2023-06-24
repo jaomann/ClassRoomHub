@@ -7,5 +7,6 @@ namespace ClassroomHub.Core.Contracts.Repositories
 {
     public interface IUserRepository : IBaseRepository<User>
     {
+        User GetByEmail(string email);
     }
 }

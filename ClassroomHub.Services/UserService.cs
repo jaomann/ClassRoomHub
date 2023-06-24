@@ -3,36 +3,25 @@ using ClassroomHub.Core.Contracts.Services;
 using ClassroomHub.Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ClassroomHub.Services
 {
-    public class UserService : IUserServices
+    public class UserService : BaseService<User>, IUserServices
     {
         private readonly IUserRepository _userRepository;
-        public UserService(IUserRepository _userRepository)
+        public UserService(IUserRepository userRepository) : base(userRepository)
         {
-            this._userRepository = _userRepository;
+            this._userRepository = userRepository;
         }
-        public void Create(User user)
+        public bool Verify(User user)
         {
-            _userRepository.Add(user);
-        }
-        public void Update(User user)
-        {
-
-        }
-
-        public User GetById(Guid id)
-        {
-            return _userRepository.GetById(id);
-        }
-        public IEnumerable<User> GetAll()
-        {
-            return new List<User>();
-        }
-        public void Delete(Guid id)
-        {
-
+            var real_User = _userRepository.GetByEmail(user.Email);
+            if (user.Password == real_User.Password)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

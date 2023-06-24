@@ -8,8 +8,14 @@ namespace ClassroomHub.Data.Repositories
 {
     public class CourseRepository : BaseRepository<Course>, ICourseRepository
     {
+        private readonly Context _context;
         public CourseRepository(Context context) : base(context)
         {
+        }
+
+        public Course GetByCourseName(string courseName)
+        {
+            throw new NotImplementedException();
         }
     }
 }

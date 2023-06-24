@@ -7,6 +7,6 @@ namespace ClassroomHub.Core.Contracts.Services
 {
     public interface IUserServices : IBaseServices<User>
     {
-        
+        bool Verify(User entity);
     }
 }
