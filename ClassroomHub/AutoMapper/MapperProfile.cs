@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ClassroomHub.Core.Entities;
 using ClassroomHub.Web.ViewModels;
+using ClassRoomHub.Web.ViewModels;
 
 namespace ClassroomHub.Web.AutoMapper
 {
@@ -15,6 +16,7 @@ namespace ClassroomHub.Web.AutoMapper
                 .ReverseMap();
 
             CreateMap<CourseViewModel, Course>().ReverseMap();
+            CreateMap<ClassViewModel, Class>().ReverseMap();
         }
     }
 }

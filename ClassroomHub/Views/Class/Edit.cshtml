@@ -1,0 +1,40 @@
+﻿@using ClassRoomHub.Web.ViewModels;
+@model ClassViewModel;
+
+<div class="course-edit">
+    <div class="edit-content">
+        <h5>Editar Turma</h5>
+        <form method="post" asp-action="Edit" asp-controller="Class">
+            <div class="row">
+                <div class="col-12">
+                    @Html.DisplayNameFor(x => x.Name)
+                    @Html.TextBoxFor(x => x.Name, new {Placeholder ="Informe o novo nome da turma", Attribute="width:100%", @class="form-control mt-2"})
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    @Html.DisplayNameFor(x => x.Start)
+                    @Html.TextAreaFor(x => x.Start, new{Placeholder = "Nova data de inicio", Attribute="width:100%", @class="form-control mt-2"})
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    @Html.DisplayNameFor(x => x.End)
+                    @Html.TextAreaFor(x => x.End, new{Placeholder = "Nova data de termino", Attribute="width:100%", @class="form-control mt-2"})
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 d-flex justify-content-between">
+                    <button style="background-color:  gray;" type="button"><a style="text-decoration: none; color: white;" asp-action="Index" asp-controller="Course">Voltar</a></button>
+                    <button type="submit">Atualizar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

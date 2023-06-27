@@ -1,0 +1,37 @@
+﻿@using ClassRoomHub.Web.ViewModels;
+@model ClassViewModel;
+
+<div class="row">
+    <div class="col-4 mt-2">
+        <button style="padding:5px; width:10vh;" type="button" data-toggle="modal" data-target="#createClass"><i class="fa fa-plus"></i></button>
+    </div>
+</div>
+
+<div class="modal fade" id="createClass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title">Cadastrar turma</h5>
+                <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                    <span style="text-decoration: none; color: black;" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" asp-controller="Class" asp-action="Create">
+                <div class="modal-body">
+                    <label asp-for="Name"></label>
+                    @Html.TextBoxFor(x => x.Name, new{Placeholder = "Insira o nome da turma", Atrribute="width:100%", @class="form-control"})
+                    @Html.ValidationMessageFor(x => x.Name)
+                    <label asp-for="Start"></label>
+                    @Html.TextBoxFor(x => x.Start, new{Placeholder = "Quando começou?", type="Date", Attribute="width:100%", @class="form-control"})
+                    @Html.ValidationMessageFor(x =>x.Start)
+                    <label asp-for="End"></label>
+                    @Html.TextBoxFor(x => x.End, new{Placeholder = "Quando terminou?", type="Date", Attribute="width:100%", @class="form-control"})
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-sucess">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
