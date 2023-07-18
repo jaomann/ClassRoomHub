@@ -19,16 +19,28 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outlined-success" asp-action="Index" asp-controller="Register">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outlined-success" asp-action="Index" asp-controller="Login">Login</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Interface de Aluno
+                                Gerenciamento
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Activity" asp-action="Index">Atividades</a></li>
-                                <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" asp-controller="Student" asp-action="Index">Alunos</a></li>
                                 <li><a class="dropdown-item" asp-controller="Course" asp-action="Index">Cursos</a></li>
                                 <li><a class="dropdown-item" asp-controller="Class" asp-action="Index">Turmas</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Menu de aluno
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Activity" asp-action="Index">Atividades</a></li>
                             </ul>
                         </li>
                     </ul>

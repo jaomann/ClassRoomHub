@@ -14,9 +14,11 @@ namespace ClassroomHub.Data.Configuration
         {
             builder.ToTable("Turmas");
             builder.HasKey(id => id.Id);
-            builder.Property(Name => Name.Name);
-            builder.Property(Start => Start.Start);
-            builder.Property(End => End.End);
+            builder.Property(Name => Name.Name).IsRequired();
+            builder.Property(Start => Start.Start).IsRequired() ;
+            builder.Property(End => End.End).IsRequired();
+            builder.HasOne(x => x.Course).WithMany(x => x.Classes).HasForeignKey(x => x.CourseId);
+            builder.HasMany(x => x.Students).WithOne(x => x.Class).HasForeignKey(x => x.ClassId);
         }
     }
 }

@@ -12,10 +12,8 @@ namespace ClassroomHub.Core.Entities
         public int GradePoints { get; set; }
 
         #region NavProperties
-        public Guid ModuleGuid { get;set; }
+        public Guid ModuleId { get;set; }
         public Module Module { get;set; }
-        public Guid TeacherGuid { get;set; }
-        public Teacher Teacher { get;set;}
         #endregion
     }
 }

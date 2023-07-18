@@ -1,0 +1,65 @@
+﻿@using ClassRoomHub.Web.ViewModels;
+@model StudentViewModel;
+
+<div class="course-edit">
+    <div class="edit-content">
+        <h5>Editar Aluno</h5>
+        <form method="post" asp-action="Update" asp-controller="Student">
+            <div class="modal-body">
+                @{
+                    var classes = (SelectList)ViewBag.Turmas;
+                    var users = (SelectList)ViewBag.Users;
+                    if (!users.Any())
+                    {
+                        <div class="row m-2">
+                            <span class="text-danger">Não há usuários disponíveis para criação de alunos.</span>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-outlined-success" asp-action="Index" asp-controller="Register">Cadastrar Usuário</a>
+                        </div>
+                    }
+                    else if (!classes.Any())
+                    {
+                        <div class="row m-2">
+                            <span class="text-danger">Não é possivel cadastrar alunos sem turmas.</span>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-outlined-success" asp-action="Index" asp-controller="Class">Criar Turma</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="row mb-2">
+                            <div class="col-md-12">
+                                @Html.DropDownListFor(x => x.UserID, users, "Indique o usuário", new{@class="form-control mt-2"})
+                                <span asp-validation-for="UserID" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-12">
+                                @Html.DropDownListFor(x => x.ClassID,classes, "Selecione o curso", new{@class="form-control mt-2"})
+                                <span asp-validation-for="ClassID" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(x => x.Name, new {placeholder = "Nome do aluno",@class="form-control mt-2"})
+                            </div>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(x => x.Surname, new{placeholder = "Sobrenome do aluno",@class="form-control mt-2"})
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline-success">Atualizar</button>
+                        </div>
+                    }
+                }
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -17,7 +17,7 @@ namespace ClassroomHub.Data.Configuration
             builder.Property(x => x.Name);
             builder.Property(x => x.Surname);
             builder.Property(x => x.Email);
-            builder.HasOne(x => x.User).WithOne(x => x.Teacher).HasForeignKey<Teacher>(x => x.UserGuid);
+            builder.HasOne(x => x.User).WithOne(x => x.Teacher).HasForeignKey<Teacher>(x => x.UserId);
 
         }
     }

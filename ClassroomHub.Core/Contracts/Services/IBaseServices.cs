@@ -12,6 +12,6 @@ namespace ClassroomHub.Core.Contracts.Services
         T GetById(Guid id);
         void Update(T entity);
         void Delete(Guid id);
-  
+
     }
 }

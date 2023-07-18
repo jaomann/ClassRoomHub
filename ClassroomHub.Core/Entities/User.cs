@@ -7,9 +7,9 @@ namespace ClassroomHub.Core.Entities
         public string Email { get; set; }
         public DateTime Birthday { get; set; }
         public string Password { get; set; }
+        public Guid StudentId { get; set; }
         public Student Student { get; set; }
-        public Guid StudentID { get; set; }
+        public Guid TeacherId { get; set; }
         public Teacher Teacher { get; set; }
-        public Guid TeacherID { get; set; }
     }
 }

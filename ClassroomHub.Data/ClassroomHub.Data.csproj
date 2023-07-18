@@ -7,6 +7,12 @@
   <ItemGroup>
     <Compile Remove="Migrations\20230530013227_Initial.cs" />
     <Compile Remove="Migrations\20230530013227_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20230630221725_Adicionado_CourseId_na_tabela_Class.cs" />
+    <Compile Remove="Migrations\20230630221725_Adicionado_CourseId_na_tabela_Class.Designer.cs" />
+    <Compile Remove="Migrations\20230630223245_Foreign_Key_Classes.cs" />
+    <Compile Remove="Migrations\20230630223245_Foreign_Key_Classes.Designer.cs" />
+    <Compile Remove="Migrations\20230714234813_initial.cs" />
+    <Compile Remove="Migrations\20230714234813_initial.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

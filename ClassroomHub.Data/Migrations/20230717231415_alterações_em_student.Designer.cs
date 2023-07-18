@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClassroomHub.Data.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230603012630_adicionadas_regras_de_curso")]
-    partial class adicionadas_regras_de_curso
+    [Migration("20230717231415_alterações_em_student")]
+    partial class alterações_em_student
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,13 +36,10 @@ namespace ClassroomHub.Data.Migrations
                     b.Property<int>("GradePoints")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("ModuleGuid")
+                    b.Property<Guid>("ModuleId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ModuleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("TeacherGuid")
+                    b.Property<Guid?>("StudentId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Title")
@@ -53,6 +50,8 @@ namespace ClassroomHub.Data.Migrations
 
                     b.HasIndex("ModuleId");
 
+                    b.HasIndex("StudentId");
+
                     b.ToTable("Atividade");
                 });
 
@@ -62,19 +61,22 @@ namespace ClassroomHub.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("End")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("ModuleId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
 
                     b.ToTable("Turmas");
                 });
@@ -88,9 +90,6 @@ namespace ClassroomHub.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(400)")
                         .HasMaxLength(400);
-
-                    b.Property<Guid>("ModuleId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -108,19 +107,10 @@ namespace ClassroomHub.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ActivityGuid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("ActivityId")
+                    b.Property<Guid>("ActivityId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("GradeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("StudentGuid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("StudentId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("SubmissionDate")
@@ -129,8 +119,6 @@ namespace ClassroomHub.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ActivityId");
-
-                    b.HasIndex("StudentId");
 
                     b.ToTable("Entregas");
                 });
@@ -161,15 +149,6 @@ namespace ClassroomHub.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ActivityId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ClassId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CourseId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -191,10 +170,6 @@ namespace ClassroomHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClassId");
-
-                    b.HasIndex("CourseId");
-
                     b.HasIndex("TeacherId");
 
                     b.ToTable("Module");
@@ -211,6 +186,10 @@ namespace ClassroomHub.Data.Migrations
 
                     b.Property<Guid>("ClassId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -232,16 +211,13 @@ namespace ClassroomHub.Data.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Students");
+                    b.ToTable("Student");
                 });
 
             modelBuilder.Entity("ClassroomHub.Core.Entities.Teacher", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ActivityId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
@@ -253,9 +229,12 @@ namespace ClassroomHub.Data.Migrations
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ActivityId")
+                    b.HasIndex("UserId")
                         .IsUnique();
 
                     b.ToTable("Teacher");
@@ -267,6 +246,9 @@ namespace ClassroomHub.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(80)")
@@ -276,15 +258,13 @@ namespace ClassroomHub.Data.Migrations
                         .IsRequired()
                         .HasColumnType("CHAR(20)");
 
-                    b.Property<Guid>("StudentID")
+                    b.Property<Guid>("StudentId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("TeacherID")
+                    b.Property<Guid>("TeacherId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TeacherID");
 
                     b.ToTable("Users");
                 });
@@ -292,19 +272,32 @@ namespace ClassroomHub.Data.Migrations
             modelBuilder.Entity("ClassroomHub.Core.Entities.Activity", b =>
                 {
                     b.HasOne("ClassroomHub.Core.Entities.Module", "Module")
-                        .WithMany("Activity")
-                        .HasForeignKey("ModuleId");
+                        .WithMany("Activities")
+                        .HasForeignKey("ModuleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ClassroomHub.Core.Entities.Student", null)
+                        .WithMany("Activities")
+                        .HasForeignKey("StudentId");
+                });
+
+            modelBuilder.Entity("ClassroomHub.Core.Entities.Class", b =>
+                {
+                    b.HasOne("ClassroomHub.Core.Entities.Course", "Course")
+                        .WithMany("Classes")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ClassroomHub.Core.Entities.Delivery", b =>
                 {
                     b.HasOne("ClassroomHub.Core.Entities.Activity", "Activity")
                         .WithMany()
-                        .HasForeignKey("ActivityId");
-
-                    b.HasOne("ClassroomHub.Core.Entities.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentId");
+                        .HasForeignKey("ActivityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ClassroomHub.Core.Entities.Grade", b =>
@@ -318,18 +311,6 @@ namespace ClassroomHub.Data.Migrations
 
             modelBuilder.Entity("ClassroomHub.Core.Entities.Module", b =>
                 {
-                    b.HasOne("ClassroomHub.Core.Entities.Class", "Class")
-                        .WithMany("Module")
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ClassroomHub.Core.Entities.Course", "Course")
-                        .WithMany("Modules")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ClassroomHub.Core.Entities.Teacher", "Teacher")
                         .WithMany("Module")
                         .HasForeignKey("TeacherId")
@@ -354,18 +335,9 @@ namespace ClassroomHub.Data.Migrations
 
             modelBuilder.Entity("ClassroomHub.Core.Entities.Teacher", b =>
                 {
-                    b.HasOne("ClassroomHub.Core.Entities.Activity", "Activity")
+                    b.HasOne("ClassroomHub.Core.Entities.User", "User")
                         .WithOne("Teacher")
-                        .HasForeignKey("ClassroomHub.Core.Entities.Teacher", "ActivityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ClassroomHub.Core.Entities.User", b =>
-                {
-                    b.HasOne("ClassroomHub.Core.Entities.Teacher", "Teacher")
-                        .WithMany()
-                        .HasForeignKey("TeacherID")
+                        .HasForeignKey("ClassroomHub.Core.Entities.Teacher", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

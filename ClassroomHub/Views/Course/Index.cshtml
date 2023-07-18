@@ -24,9 +24,12 @@
                     </thead>
                     @if (Model.Any())
                     {
+                        var courses = Model.ToList();
                         <tbody>
-                            @foreach (var course in Model)
+                            @for (int i = 0; i < courses.Count; i++)
                             {
+                                var course = courses[i];
+                                var param = new Tuple<string, Guid>("remove"+i, course.Id);
                                 <tr>
                                     <td>
                                         @Html.DisplayFor(x => course.Name)
@@ -38,11 +41,10 @@
                                         <a style="text-decoration: none; color: black;" asp-action="Edit"><i class="fa fa-edit ml-2"></i></a>
                                     </td>
                                     <td>
-                                        <a style="text-decoration: none; color: black;" data-toggle="modal" data-target="#removeConfirmation"><i class="fa fa-trash ml-2"></i></a>
+                                        <a style="text-decoration: none; color: black;" data-toggle="modal" data-target="#@param.Item1"><i class="fa fa-trash ml-2"></i></a>
                                     </td>
                                 </tr>
-                                <partial name="_delete" model="course.Id"/>
-
+                                <partial name="_delete" model="param"/>
 
                             }
                         </tbody>
@@ -57,9 +59,9 @@
                     }
                 </table>
             </div>
-                        <div class="partial">
-                            <partial name="_create" model="new CourseViewModel()"/>
-                        </div>
+            <div class="partial">
+                <partial name="_create" model="new CourseViewModel()"/>
+            </div>
         </div>
     </div>
 </div>

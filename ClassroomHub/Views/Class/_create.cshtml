@@ -2,8 +2,8 @@
 @model ClassViewModel;
 
 <div class="row">
-    <div class="col-4 mt-2">
-        <button style="padding:5px; width:10vh;" type="button" data-toggle="modal" data-target="#createClass"><i class="fa fa-plus"></i></button>
+    <div class="col-4 mt-2 ">
+        <button type="button" data-toggle="modal" data-target="#createClass"><i class="fa fa-plus" style="padding:5px; width:120px;"></i></button>
     </div>
 </div>
 
@@ -16,21 +16,62 @@
                     <span style="text-decoration: none; color: black;" aria-hidden="true">&times;</span>
                 </button>
             </div>
+            
             <form method="post" asp-controller="Class" asp-action="Create">
+            @{
+                var courses = (SelectList)ViewBag.Courses; 
+                @if (courses.Any())
+                {
                 <div class="modal-body">
-                    <label asp-for="Name"></label>
-                    @Html.TextBoxFor(x => x.Name, new{Placeholder = "Insira o nome da turma", Atrribute="width:100%", @class="form-control"})
-                    @Html.ValidationMessageFor(x => x.Name)
-                    <label asp-for="Start"></label>
-                    @Html.TextBoxFor(x => x.Start, new{Placeholder = "Quando começou?", type="Date", Attribute="width:100%", @class="form-control"})
-                    @Html.ValidationMessageFor(x =>x.Start)
-                    <label asp-for="End"></label>
-                    @Html.TextBoxFor(x => x.End, new{Placeholder = "Quando terminou?", type="Date", Attribute="width:100%", @class="form-control"})
+                    <div class="row mb-2">
+                        <div class="col-md-12">
+                            @Html.DisplayNameFor(x => x.CourseId)
+                            @Html.DropDownListFor(x => x.CourseId,courses, "Selecione o curso", new{@class="form-control mt-2"})
+                            <span asp-validation-for="CourseId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div clas="row mt-3">
+                        <div class="col-md-12">
+                            @Html.DisplayNameFor(x => x.Name)
+                            @Html.TextBoxFor(x => x.Name, new{Placeholder = "Insira o nome da turma", Atrribute="width:100%", @class="form-control"})
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            @Html.DisplayNameFor(x => x.Start)
+                            @Html.TextBoxFor(x => x.Start, new{Placeholder = "Quando começou?", type="Date", Attribute="width:100%", @class="form-control"})
+                            <span asp-validation-for="Start" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            @Html.DisplayNameFor(x => x.End)
+                            @Html.TextBoxFor(x => x.End, new{Placeholder = "Quando terminou?", type="Date", Attribute="width:100%", @class="form-control"})
+                            <span asp-validation-for="End" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-sucess">Save changes</button>
-                </div>
+                            <button type="submit" class="btn btn-outline-success">Save changes</button>
+                    </div>
+                    
+                }else{
+                    <div class="modal-body">
+                        <div class="row mb-2">
+                            <div class="col-md-12 text-center">
+                                <span class="text-danger">Não é possivel adicionar turmas sem algum curso.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <span class="text-muted">Adicione um curso primeiro -></span>
+                        <button asp-action="Index" asp-controller="Course" class="btn btn-secondary">Redirect</button>
+                    </div>
+                           
+                    }
+                }
+
+            }
             </form>
         </div>
     </div>

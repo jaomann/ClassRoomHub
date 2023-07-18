@@ -9,8 +9,8 @@ namespace ClassroomHub.Core.Entities
         public DateTime Start { get;set; }
         public DateTime End { get; set; }
         public List<Student> Students { get; set; }
-        public Guid ModuleId { get; set; }
-        public List<Module> Module { get; set; }
+        public Guid CourseId { get; set; }
+        public Course Course { get; set;}
 
     }
 }

@@ -14,9 +14,7 @@ namespace ClassroomHub.Data.Configuration
             builder.Property(x => x.Description);
             builder.Property(x => x.Start).IsRequired(); 
             builder.Property(x => x.End).IsRequired();
-            builder.HasOne(x => x.Teacher).WithMany( x => x.Module);
-            builder.HasOne(x => x.Course).WithMany(x => x.Modules);
-            builder.HasOne(x => x.Class).WithMany(x => x.Module);
+            builder.HasOne(x => x.Teacher).WithMany(x => x.Module).HasForeignKey(x => x.TeacherId) ;
 
         }
     }

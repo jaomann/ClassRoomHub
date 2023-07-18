@@ -1,9 +1,6 @@
 ﻿using ClassroomHub.Core.Contracts.Repositories;
 using ClassroomHub.Core.Entities;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ClassroomHub.Data.Repositories
 {

@@ -1,4 +1,5 @@
 ﻿@model ClassroomHub.Web.ViewModels.UserViewModel
+@using System;
 @{
     ViewData["Title"] = "Register";
 }
@@ -11,11 +12,13 @@
                 @Html.ValidationMessageFor(x => x.Email)
             </div>
             <div>
-                @Html.TextBoxFor(x => x.Birthday, new{Placeholder = "Nascimento", @class="input"})
+                @Html.PasswordFor(x => x.Password, new{Placeholder = "Senha", @class="input"})
                 @Html.ValidationMessageFor(x => x.Birthday)
             </div>
             <div>
-                @Html.PasswordFor(x => x.Password, new{Placeholder = "Senha", @class="input"})
+                <hr />
+                @Html.DisplayNameFor(x => x.Birthday)
+                @Html.TextBoxFor(x => x.Birthday, new{Type="Date", @class="form-control mt-2 mb-2"})
                 @Html.ValidationMessageFor(x => x.Birthday)
             </div>
             <div class="box-footer">

@@ -18,5 +18,8 @@ namespace ClassRoomHub.Web.ViewModels
         [DisplayName("Fim")]
         [DisplayFormat(ConvertEmptyStringToNull = true, NullDisplayText = "Sem data de término", DataFormatString = "{0:D}")]
         public DateTime End { get; set; }
+        [Display(Name="Curso")]
+        [Required(ErrorMessage = "Campo Obrigatório")]
+        public Guid CourseId { get; set; }
     }
 }

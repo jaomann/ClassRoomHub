@@ -17,8 +17,7 @@ namespace ClassroomHub.Data.Configuration
             builder.Property(x => x.Description);
             builder.Property(x => x.DueDate).IsRequired();
             builder.Property(x => x.GradePoints).IsRequired();
-            builder.HasOne(x => x.Teacher).WithOne(x => x.Activity);
-            builder.HasOne(x => x.Module).WithMany(x => x.Activity);
+            builder.HasOne(x => x.Module).WithMany(x => x.Activities).HasForeignKey(x => x.ModuleId);
         }
     }
 }

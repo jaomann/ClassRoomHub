@@ -26,9 +26,9 @@ namespace ClassroomHub.Web.Controllers
             var user = _mapper.Map<User>(userV);
             if (_userservices.Verify(user))
             {
-                return RedirectToAction("Index", "Activity");
+                return RedirectToAction("Index", "Student");
             }
-            return Unauthorized();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

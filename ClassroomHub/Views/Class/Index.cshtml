@@ -1,11 +1,19 @@
 ﻿@using ClassRoomHub.Web.ViewModels;
-@model IEnumerable<ClassViewModel>;
+@model IEnumerable<ClassViewModel>
+
 @{
     ViewData["Title"] = "Turmas";
 }
 <div class="CourseContainer">
     <div class="Course">
-        <h2>Turmas</h2>
+         <div class="row mt-3 justify-content-between">
+             <div class="col-md-6">
+                <h2>Turmas</h2>
+             </div>
+            <div class="col-md-6">
+                <partial name="_find" />
+            </div>
+        </div>
         <div class="itens">
             <table class="table table-striped table-hover text-center">
                 <thead>
@@ -25,28 +33,30 @@
                 </thead>
                 @if (Model.Any())
                 {
-                <tbody>
-                        @foreach (var classs in Model)
+                    var classes = Model.ToList();
+                    <tbody>
+                        @for(int i = 0; i < classes.Count; i++)
                         {
-                            
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(x => classs.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(x => classs.Start)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(x => classs.End)
-                            </td>
-                            <td>
-                                <a asp-action="Edit"><i class="fa fa-edit ml-3"></i></a>
-                            </td>
-                            <td>
-                                <a data-toggle="modal" data-target="#removeConfirmation"><i class="fa fa-trash ml-3"></i></a>
-                            </td>
-                        </tr>
-                        <partial name="_delete" model="classs.Id"/>
+                            var turma = classes[i];
+                            var param = new Tuple<string, Guid>("remove" + i, turma.Id); 
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(x => turma.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => turma.Start)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => turma.End)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit"><i class="fa fa-edit ml-3"></i></a>
+                                </td>
+                                <td>
+                                    <a data-toggle="modal" data-target="#@param.Item1"><i class="fa fa-trash ml-3"></i></a>
+                                </td>
+                            </tr>
+                            <partial name="_delete" model="param" />
                         }
                     </tbody>
                 }
@@ -54,14 +64,19 @@
                 {
                     <tr>
                         <td>
-                            <p>Não há turma cadastrada</p>
+                            <p>Não há turma cadastrada neste curso</p>
                         </td>
                     </tr>
                 }
             </table>
-        </div>
         <div class="partial">
-           <partial name="_create" model="new ClassViewModel()"/>
+            <partial name="_create" model="new ClassViewModel()" />
+        </div>
         </div>
     </div>
 </div>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

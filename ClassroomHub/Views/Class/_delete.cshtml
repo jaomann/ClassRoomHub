@@ -1,5 +1,5 @@
-﻿@model Guid;
-<div class="modal fade" id="removeConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+﻿@model Tuple<string, Guid>;
+<div class="modal fade" id="@Model.Item1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,11 +8,15 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-main alert-danger">
-                <p class="ml-3 mt-1">Ao apagar a turma, não tem mais volta</p>
+            <div class="modal-body">
+                <div class="row mb-2">
+                    <div class="col-md-12 text-center">
+                        <span class="text-danger">A deleção não tem volta.</span>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-                <a asp-action="Delete" asp-route-id=@Model class="btn btn-danger">Delete</a>
+            <div class="modal-footer justify-content-between">
+                <button asp-action="Delete" asp-route-id="@Model.Item2" class="btn btn-danger">Delete</button>
             </div>
         </div>
     </div>

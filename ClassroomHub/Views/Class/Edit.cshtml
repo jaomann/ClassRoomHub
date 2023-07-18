@@ -5,6 +5,13 @@
     <div class="edit-content">
         <h5>Editar Turma</h5>
         <form method="post" asp-action="Edit" asp-controller="Class">
+            <div class="row mt-2 mb-2">
+                <div class="col-md-12">
+                    @Html.DisplayFor(x => x.CourseId)
+                    @Html.DropDownListFor(x => x.CourseId, (SelectList)ViewBag.Courses, "Selecione o curso", new{@class="form-control mt2"})
+                    <span asp-validation-for="CourseId" class="text-danger"></span>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12">
                     @Html.DisplayNameFor(x => x.Name)
@@ -13,15 +20,15 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-6">
                     @Html.DisplayNameFor(x => x.Start)
-                    @Html.TextAreaFor(x => x.Start, new{Placeholder = "Nova data de inicio", Attribute="width:100%", @class="form-control mt-2"})
+                    @Html.TextBoxFor(x => x.Start, new{Placeholder = "Nova data de inicio", Attribute="width:100%", @class="form-control mt-2"})
+                    <span asp-validation-for="Start" class="text-danger"></span>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
+                <div class="col-6">
                     @Html.DisplayNameFor(x => x.End)
-                    @Html.TextAreaFor(x => x.End, new{Placeholder = "Nova data de termino", Attribute="width:100%", @class="form-control mt-2"})
+                    @Html.TextBoxFor(x => x.End, new{Placeholder = "Nova data de termino", Attribute="width:100%", @class="form-control mt-2"})
+                    <span asp-validation-for="End" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-3">

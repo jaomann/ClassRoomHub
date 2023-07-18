@@ -11,7 +11,7 @@ namespace ClassroomHub.Data.Configuration
             builder.HasKey(x => x.Id);
             builder.ToTable("Users");
             builder.Property(x => x.Email).IsRequired().HasMaxLength(80);
-            builder.Property(x => x.Password).HasColumnType("CHAR(20)").IsRequired();
+            builder.Property(x => x.Password).IsRequired().HasMaxLength(100);
         }
     }
 }
