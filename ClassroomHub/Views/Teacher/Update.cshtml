@@ -1,0 +1,37 @@
+﻿@using ClassRoomHub.Web.ViewModels;
+@model TeacherViewModel;
+
+<div class="course-edit">
+    <div class="edit-content">
+        <h5>Editar Professor</h5>
+        <form method="post" asp-action="Update">
+            <div class="modal-body">
+                @{
+                var users = (SelectList)ViewBag.Users;
+                    <div class="row mb-2">
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(x => x.UserId, users, "Indique o usuário", new{@class="form-control mt-2"})
+                            <span asp-validation-for="UserId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(x => x.Name, new {placeholder = "Nome do professor",@class="form-control mt-2"})
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(x => x.Surname, new{placeholder = "Sobrenome do professor",@class="form-control mt-2"})
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-outline-success">Atualizar</button>
+                    </div>
+                }
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

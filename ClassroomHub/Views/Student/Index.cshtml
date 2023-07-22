@@ -2,7 +2,14 @@
 @model IEnumerable<StudentViewModel>
 <div class="StudentContainer">
     <div class="Student">
-    <h2 class="text-center">Alunos</h2>
+        <div class="row justify-content-between">
+            <div class="col-md-6">
+                <h2 class="text-center">Alunos</h2>
+            </div>
+            <div class="col-md-6">
+                <partial name="_find" />
+            </div>
+        </div>
         <div class="itens">
             <table class="table table-striped table-hover text-center">
             <thead>
@@ -12,6 +19,9 @@
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Surname)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
                         </th>
                         <th></th>
                         <th></th>
@@ -32,6 +42,9 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(x=> student.Surname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(x => student.Email)
                             </td>
                             <td>
                                 <a asp-action="Update" asp-route-id="@param.Item1">Edit</a>

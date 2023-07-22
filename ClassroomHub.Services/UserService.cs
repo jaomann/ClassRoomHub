@@ -17,7 +17,7 @@ namespace ClassroomHub.Services
         public bool Verify(User user)
         {
             var real_User = _userRepository.GetByEmail(user.Email);
-            if (real_User != null && user.Password == real_User.Password)
+            if (real_User != null && user.Password.Equals(real_User.Password))
             {
                 return true;
             }

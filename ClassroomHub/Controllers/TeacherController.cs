@@ -1,83 +1,66 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using ClassroomHub.Core.Contracts.Services;
+using ClassroomHub.Core.Entities;
+using ClassroomHub.Services;
+using ClassroomHub.Web.ViewModels;
+using ClassRoomHub.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.VisualBasic;
+using System;
+using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ClassRoomHub.Web.Controllers
 {
     public class TeacherController : Controller
     {
-        // GET: TeacherController
-        public ActionResult Index()
+        private readonly ITeacherServices _teacherServices;
+        private readonly IUserServices _userServices;
+        private readonly IClassServices _classServices;
+        private readonly IMapper _mapper;
+
+        public TeacherController(ITeacherServices teacherServices, IUserServices userServices, IMapper mapper, IClassServices classServices)
         {
-            return View();
+            _teacherServices = teacherServices;
+            _userServices = userServices;
+            _mapper = mapper;
+            _classServices = classServices;
         }
 
-        // GET: TeacherController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Index()
         {
-            return View();
-        }
 
-        // GET: TeacherController/Create
-        public ActionResult Create()
+            var users = _mapper.Map<IEnumerable<UserViewModel>>(_userServices.GetAll());
+            ViewBag.Users = new SelectList(users, "Id", "Email");
+            var teachers = _mapper.Map<IEnumerable<TeacherViewModel>>(_teacherServices.GetFullTeacher());
+            return View(teachers);
+        }
+        public IActionResult Create(TeacherViewModel entity)
         {
-            return View();
+            var teacher = _mapper.Map<Teacher>(entity);
+            _teacherServices.Create(teacher);
+            return RedirectToAction(nameof(Index));
         }
-
-        // POST: TeacherController/Create
+        public IActionResult Delete(Guid id)
+        {
+            _teacherServices.Delete(id);
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Update(Guid id)
+        {
+            var usuarios = _mapper.Map<IEnumerable<UserViewModel>>(_userServices.GetAll());
+            ViewBag.Users = new SelectList(usuarios, "Id", "Email");
+            var teachers = _mapper.Map<TeacherViewModel>(_teacherServices.GetById(id));
+            return View(teachers);
+        }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Update(TeacherViewModel entity)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _teacherServices.Update(_mapper.Map<Teacher>(entity));
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: TeacherController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: TeacherController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: TeacherController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: TeacherController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
+

@@ -6,13 +6,13 @@ namespace ClassroomHub.Core.Entities
 {
     public class Teacher : EntityBase
     {
-        public string Name { get; }
-        public string Surname { get; }
-        public string Email { get; }
-        public Guid UserId { get; }
-        public User User { get; }
-        public Guid ModuleId { get; }
-        public List<Module> Module { get; }
+        public string Name { get; set;  }
+        public string Surname { get; set; }
+        public string Specialization { get; set; }
+        public Guid UserId { get; set; }
+        public User User { get; set; }
+        public Guid ModuleId { get; set; }
+        public List<Module> Module { get; set; }
 
     }
 }

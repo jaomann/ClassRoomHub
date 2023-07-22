@@ -11,10 +11,16 @@ namespace ClassroomHub.Web.AutoMapper
         public MapperProfile()
         {
             CreateMap<UserViewModel, User>().ReverseMap();
-
             CreateMap<CourseViewModel, Course>().ReverseMap();
             CreateMap<ClassViewModel, Class>().ReverseMap();
-            CreateMap<StudentViewModel, Student>().ReverseMap();
+
+            CreateMap<Student, StudentViewModel>()
+                .ForMember(x => x.Email, src => src.MapFrom(x => x.User.Email));
+            CreateMap<StudentViewModel, Student>();
+            
+            CreateMap<Teacher, TeacherViewModel>()
+                .ForMember(x => x.Email, src => src.MapFrom(x => x.User.Email));
+            CreateMap<TeacherViewModel, Teacher>();
         }
     }
 }

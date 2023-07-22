@@ -1,0 +1,9 @@
+﻿@{
+    var id = Guid.Empty;
+}
+<form method="post" asp-route-id="@id" asp-action="Index">
+    <div style="text-align:end">
+        @Html.DropDownListFor(x => id,(SelectList)ViewBag.Turmas, "Selecione a turma", new{@class="form-control mt-2"})
+        <button asp-for="@id" type="submit" style="width:100px; height:40px" class="btn btn-warning m-2"><i class="fa fa-search fa-flip-horizontal" style="color: #000000;"></i></button>
+    </div>
+</form>

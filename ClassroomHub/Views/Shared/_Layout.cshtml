@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark text-white bg-dark">
+        <nav class="navbar navbar-expand-sm navbar-inverse navbar-toggleable-sm navbar-dark text-white bg-dark">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ClassRoomHub</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -30,6 +30,7 @@
                                 Gerenciamento
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-controller="Teacher" asp-action="Index">Professores</a></li>
                                 <li><a class="dropdown-item" asp-controller="Student" asp-action="Index">Alunos</a></li>
                                 <li><a class="dropdown-item" asp-controller="Course" asp-action="Index">Cursos</a></li>
                                 <li><a class="dropdown-item" asp-controller="Class" asp-action="Index">Turmas</a></li>

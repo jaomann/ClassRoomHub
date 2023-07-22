@@ -8,16 +8,15 @@ namespace ClassRoomHub.Web.ViewModels
     public class StudentViewModel
     {
         public Guid Id { get; set; }
+
         [DisplayName("Nome")]
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Name { get; set; }
+
         [DisplayName("Sobrenome")]
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Surname { get; set; }
-
-        [Display(Name = "Nascimento")]
-        [Required(ErrorMessage = "Campo obrigatório")]
-        public DateTime Birthday { get; set; }
+        public string Email { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         public Guid ClassID { get; set; }

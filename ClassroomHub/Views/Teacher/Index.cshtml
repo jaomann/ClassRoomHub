@@ -1,0 +1,76 @@
+﻿@using ClassRoomHub.Web.ViewModels;
+@model IEnumerable<TeacherViewModel>
+<div class="StudentContainer">
+    <div class="Student">
+        <h2 class="text-center">Professores</h2>
+        <div class="itens">
+            <table class="table table-striped table-hover text-center">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Surname)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Specialization)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        var teachers = Model.ToList();
+                        var users = ViewBag.Users;
+                        for (var i = 0; i < teachers.Count; i++)
+                        {
+                            var teacher = teachers[i];
+                            var param = new Tuple<Guid, String>(teacher.Id, "student" + i);
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(x => teacher.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x=> teacher.Surname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => teacher.Specialization)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => teacher.Email)
+                                </td>
+                                <td>
+                                    <a asp-action="Update" asp-route-id="@param.Item1">Edit</a>
+                                </td>
+                                <td>
+                                    <a data-toggle="modal" data-target="#@param.Item2">Delete</a>
+                                </td>
+                            </tr>
+                            <partial name="_delete" model="param"/>
+                        };
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>
+                                <p>Não há professores cadastrados.</p>
+                            </td>
+                        </tr>
+                    }
+                    <partial name="_create" model="new TeacherViewModel()" />
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

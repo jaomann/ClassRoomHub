@@ -68,6 +68,8 @@ namespace ClassroomHub.Web.Controllers
         [HttpGet]
         public IActionResult Edit(Guid id)
         {
+            var courses = _mapper.Map<IEnumerable<CourseViewModel>>(_courseServices.GetAll());
+            ViewBag.Courses = new SelectList(courses, "Id", "Name");
             var classs = _classServices.GetById(id);
             var classViewModel = _mapper.Map<ClassViewModel>(classs);
    

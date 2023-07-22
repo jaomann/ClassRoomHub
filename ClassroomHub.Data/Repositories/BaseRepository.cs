@@ -13,6 +13,12 @@ namespace ClassroomHub.Data.Repositories
         {
             this._context = context;
         }
+
+        public IQueryable<T> Get()
+        {
+            return _context.Set<T>();
+        }
+
         public void Add(T entity)
         {
             var dbset = this._context.Set<T>();
@@ -30,14 +36,15 @@ namespace ClassroomHub.Data.Repositories
             }
         }
 
+
         public IEnumerable<T> GetAll()
         {
-            return this._context.Set<T>();
+            return this.Get();
         }
 
         public T GetById(Guid id)
         {
-            return this._context.Set<T>().FirstOrDefault(x => x.Id == id);
+            return this.Get().FirstOrDefault(x => x.Id == id);
         }
 
         public void Update(T entity)

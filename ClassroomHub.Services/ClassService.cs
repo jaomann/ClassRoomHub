@@ -12,7 +12,6 @@ namespace ClassroomHub.Services
     public class ClassService : BaseService<Class>, IClassServices
     {
         public ClassService(IClassRepository classRepository) : base(classRepository) { }
-        private Dictionary<string, string> Error;
         public override void Create(Class entity)
         {
             

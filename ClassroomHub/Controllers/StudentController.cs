@@ -31,6 +31,15 @@ namespace ClassRoomHub.Web.Controllers
             ViewBag.Users = new SelectList(usuarios, "Id", "Email");
             var classes = _mapper.Map<IEnumerable<ClassViewModel>>(_classServices.GetAll());
             ViewBag.Turmas = new SelectList(classes, "Id", "Name");
+            return View(new List<StudentViewModel>());
+        }
+        [HttpPost]
+        public IActionResult Index(Guid id)
+        {
+            var usuarios = _mapper.Map<IEnumerable<UserViewModel>>(_userServices.GetAll());
+            ViewBag.Users = new SelectList(usuarios, "Id", "Email");
+            var classes = _mapper.Map<IEnumerable<ClassViewModel>>(_classServices.GetAll());
+            ViewBag.Turmas = new SelectList(classes, "Id", "Name");
             var studentVM = _mapper.Map<IEnumerable<StudentViewModel>>(_studentServices.GetAll());
             return View(studentVM);
         }

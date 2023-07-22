@@ -9,26 +9,6 @@
                 @{
                     var classes = (SelectList)ViewBag.Turmas;
                     var users = (SelectList)ViewBag.Users;
-                    if (!users.Any())
-                    {
-                        <div class="row m-2">
-                            <span class="text-danger">Não há usuários disponíveis para criação de alunos.</span>
-                        </div>
-                        <div class="modal-footer">
-                            <a class="btn btn-outlined-success" asp-action="Index" asp-controller="Register">Cadastrar Usuário</a>
-                        </div>
-                    }
-                    else if (!classes.Any())
-                    {
-                        <div class="row m-2">
-                            <span class="text-danger">Não é possivel cadastrar alunos sem turmas.</span>
-                        </div>
-                        <div class="modal-footer">
-                            <a class="btn btn-outlined-success" asp-action="Index" asp-controller="Class">Criar Turma</a>
-                        </div>
-                    }
-                    else
-                    {
                         <div class="row mb-2">
                             <div class="col-md-12">
                                 @Html.DropDownListFor(x => x.UserID, users, "Indique o usuário", new{@class="form-control mt-2"})

@@ -1,0 +1,64 @@
+﻿@using ClassRoomHub.Web.ViewModels;
+@model TeacherViewModel;
+
+<div class="row">
+    <div class="col-4 mt-2 ">
+        <button type="button" data-toggle="modal" data-target="#createTeacher"><i class="fa fa-plus" style="padding:5px; width:120px;"></i></button>
+    </div>
+</div>
+
+<form method="post" asp-action="Create">
+    <div class="modal fade" id="createTeacher" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+
+            <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h5 class="modal-title text-white">Cadastrar Professor</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @{
+                    var users = (SelectList)ViewBag.Users;
+                        if (!users.Any())
+                        {
+                            <div class="row m-2">
+                                <span class="text-danger">Não há usuários disponíveis para atribuição de professores.</span>
+                            </div>
+                            <div class="modal-footer">
+                                <a class="btn btn-outlined-success" asp-action="Index" asp-controller="Register">Cadastrar Usuário</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row mb-2">
+                                <div class="col-md-12">
+                                    @Html.DropDownListFor(x => x.UserId, users, "Indique o usuário", new{@class="form-control mt-2"})
+                                    <span asp-validation-for="UserId" class="text-danger"></span>
+                                </div> 
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(x => x.Name, new {placeholder = "Nome do Professor",@class="form-control mt-2"})
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(x => x.Surname, new{placeholder = "Sobrenome do professor",@class="form-control mt-2"})
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-12">
+                                    @Html.DisplayNameFor(x => x.Specialization)
+                                    @Html.TextBoxFor(x => x.Specialization, new{Placeholder = "Especialização do professor", @class="form-control mt-2"})
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-success">Criar</button>
+                            </div>
+                        }
+                }
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
