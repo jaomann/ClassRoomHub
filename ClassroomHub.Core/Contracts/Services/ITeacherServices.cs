@@ -9,5 +9,6 @@ namespace ClassroomHub.Core.Contracts.Services
      public interface ITeacherServices : IBaseServices<Teacher>
     {
         IEnumerable<Teacher> GetFullTeacher();
+        Teacher GetTeacherByName(string name);
     }
 }

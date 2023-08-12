@@ -1,0 +1,51 @@
+﻿@using ClassroomHub.Web.ViewModels;
+@model IEnumerable<ModuleViewModel>;
+
+
+<div class="StudentContainer">
+    <div class="Student" style="width:300vh; margin-right:50vh">
+        <h2>Modulos</h2>
+        <div class="itens" style="width:120vh">
+            <table class="table table-hover table-borderless">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Hours</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (Model.Any())
+                        {
+                            var modules = Model;
+                            foreach (var module in modules)
+                            {
+                                var i = 0;
+                                var param = new Tuple<Guid, string>(module.Id, "remove" + i);
+                                <tr>
+                                    <td>@module.Name</td>
+                                    <td>@module.Start</td>
+                                    <td>@module.End</td>
+                                    <td>@module.Hours</td>
+                                    <td><a asp-action="Update" asp-route-id="@param.Item1"><i class="fa fa-edit"></i></a></td>
+                                    <td><a data-toggle="modal" data-target="#@param.Item2"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                                i++;
+                                <partial name="_delete" model="param"/>
+                            }    
+                        }
+                        else
+                        {
+                            <tr><td>Não há módulos cadastrados....</td></tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <partial name="_create" model="new ModuleViewModel()" />
+        </div>
+    </div>
+</div>

@@ -139,19 +139,12 @@ main{
     background-color: rgb(0, 0, 0, 0.20);
     justify-content: flex-start;
 }
-.itens{
-    background-color:rgb(255, 255, 255);
-    color: rgb(0,0,0);
-    padding:5px;
-    border-radius:10px;
-}
-.itens h3{
-    justify-content:flex-end;
-    margin-top:10px;
-    padding:2px;
-    color: #fff;
+}.itens p{
+    font-size:15px;
+    font-style:italic;
+    text-align:end;
+    color: #000;
     border-radius:5px;
-    background-color: rgb(0, 0, 0)
 }
 .dataActivity{
     display:flex;

@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Diagnostics;
 
-namespace ClassroomHub.Core.Entities
+namespace ClassroomHub.Web.ViewModels
 {
-    public class Delivery : EntityBase
+    public class DeliveryViewModel
     {
+        
         public DateTime SubmissionDate { get; set; }
         public Guid ActivityId { get; set; }
         public Activity Activity { get; set; }
-        public int Score { get; set; }
+        public float Score { get; set; }
     }
 }

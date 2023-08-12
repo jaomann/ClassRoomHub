@@ -1,0 +1,86 @@
+﻿@using ClassRoomHub.Web.ViewModels;
+@model ActivityViewModel;
+
+<div class="row">
+    <div class="col-4 mt-2 ">
+        <button type="button" data-toggle="modal" data-target="#createActivity"><i class="fa fa-plus" style="padding:5px; width:120px;"></i></button>
+    </div>
+</div>
+
+<div class="modal fade" id="createActivity" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title">Cadastrar atividade</h5>
+                <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                    <span style="text-decoration: none; color: black;" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form method="post" asp-action="Create">
+                @{
+                    var modules = (SelectList)ViewBag.Modules;
+                    @if (modules.Any())
+                    {
+                        <div class="modal-body">
+                            <div clas="row mt-3">
+                                <div class="col-md-12"> 
+                                    @Html.DisplayNameFor(x => x.Description)
+                                    @Html.TextBoxFor(x => x.Description, new{Placeholder = "Titulo da atividade", Atrribute="width:100%", @class="form-control"})
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @Html.DisplayNameFor(x => x.Title)
+                                    @Html.TextBoxFor(x => x.Title, new{Placeholder = "Titulo da atividade", Attribute="width:100%", @class="form-control"})
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    @Html.DisplayNameFor(x => x.DueDate)
+                                    @Html.TextBoxFor(x => x.DueDate, new{Type="Date", Placeholder = "Data de entrega", Attribute="width:100%", @class="form-control"})
+                                    <span asp-validation-for="DueDate" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.DisplayNameFor(x => x.Score)
+                                    @Html.TextBoxFor(x => x.Score, new{Placeholder = "Quanto vale?", Attribute="width:100%", @class="form-control"})
+                                    <span asp-validation-for="Score" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-12">
+                                    @Html.DropDownListFor(x => x.ModuleId,modules, "Selecione o modulo", new{@class="form-control mt-2"})
+                                    <span asp-validation-for="ModuleId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-outline-success">Save changes</button>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="modal-body">
+                            <div class="row mb-2">
+                                <div class="col-md-12 text-center">
+                                    <span class="text-danger">Não é possivel adicionar atividades sem algum modulo.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <span class="text-muted">Crie o modulo dessa atividade -></span>
+                            <button asp-action="Index" asp-controller="Module" class="btn btn-secondary">Redirect</button>
+                        </div>
+
+                    }
+                }
+
+                }
+            </form>
+        </div>
+    </div>
+</div>

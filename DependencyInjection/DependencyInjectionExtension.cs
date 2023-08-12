@@ -11,6 +11,7 @@ namespace DependencyInjection
         public static void AddServicesDependency(this IServiceCollection services)
         {
             services.AddScoped<IUserServices, UserService>();
+            services.AddScoped<IActivityServices, ActivityService>();
             services.AddScoped<IStudentServices, StudentService>();
             services.AddScoped<ITeacherServices, TeacherService>();
             services.AddScoped<IScoreServices, ScoreService>();

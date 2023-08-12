@@ -1,22 +1,29 @@
-﻿@using ClassRoomHub.Web.ViewModels;
-@model List<ActivitytoStudentViewModel>
+﻿@using ClassroomHub.Web.ViewModels;
+@model ActivityCompairVM;
 @{
+    var teachers = (SelectList)ViewBag.Teachers;
+    var students = (SelectList)ViewBag.Students;
     ViewData["Title"] = "Atividades";
 }
 <div class="ActivityContainer">
     <div class="Activity">
-    <h2 class="text-center">Atividades</h2>
-        <div class="itens">
-            @foreach(var activity in Model)
-            {
-                <h3>@activity.Title</h3>
-                <p>@activity.Description</p>
-                <div class="dataActivity">
-                <p class="text-muted">@activity.DueDate.ToString("dd/MM/yy") - @activity.ScorePoints pontos</p>
-                <p class="text-muted">@activity.ModuleName - @activity.TeacherName</p>
-                </div>
-                <button>Iniciar</button>
-            }
+        <div class="row text-center">
+            <div class="col-md-12">
+                <form method="post" asp-action="teacherArea">
+                    <h5 class="text-center">Area de Professor</h5>
+                    @Html.TextBoxFor(x => x.TeacherName, new{Placeholder="Informe seu nome, professor.", @class="form-control"})
+                    <button type="submit">Entrar</button>
+                </form>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-12">
+                <form method="post" asp-action="studentArea">
+                    <h5 class="text-center">Area de Aluno</h5>
+                    @Html.TextBoxFor(x => x.StudentName, new{Placeholder="Informe seu nome, aluno.", @class="form-control"})
+                    <button type="submit">Entrar</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

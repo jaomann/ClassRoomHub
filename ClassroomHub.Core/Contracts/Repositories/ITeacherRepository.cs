@@ -8,5 +8,7 @@ namespace ClassroomHub.Core.Contracts.Repositories
     public interface ITeacherRepository : IBaseRepository<Teacher>
     {
         IEnumerable<Teacher> GetFullTeacher();
+       
+        Teacher GetTeacherByName(string name);
     }
 }

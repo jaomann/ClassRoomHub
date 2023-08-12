@@ -7,5 +7,7 @@ namespace ClassroomHub.Core.Contracts.Repositories
 {
     public interface IStudentRepository : IBaseRepository<Student>
     {
+        IEnumerable<Student> GetFullStudents();
+        Student GetStudentByName(string name);
     }
 }

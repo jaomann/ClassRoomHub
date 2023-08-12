@@ -1,0 +1,49 @@
+﻿@using ClassRoomHub.Web.ViewModels;
+@using ClassroomHub.Web.ViewModels;
+@model IEnumerable<ActivityViewModel>
+@{
+    ViewData["Title"] = "Atividades";
+}
+<div class="ActivityContainer">
+    <div class="Activity">
+        <h2 class="text-center">Atividades</h2>
+        <div class="itens">
+            <table class="table table-borderless table-dark">
+                <thead>
+                    <tr>
+                        <th>Titulo</th>
+                        <th>Pontos</th>
+                        <th>Modulo</th>
+                    </tr>
+                </thead>
+                @{
+                    if (Model.Any())
+                    {
+                        foreach (var activity in Model)
+                        {
+                            int score = 0;
+                            var correcao = new Tuple<ActivityViewModel, int>(activity, score);
+                        
+                            <tbody>
+                                <tr>
+                                    <td>@Html.DisplayFor(x => activity.Title)</td>
+                                    <td>@Html.DisplayFor(x => activity.Score)</td>
+                                    <td>@Html.DisplayFor(x => activity.Module.Name)</td>
+                                </tr>
+                            </tbody>
+                            <partial name="_solution" model="correcao"/>
+                        }
+                    }
+                    else
+                    {
+                        <tbody>
+                            <tr>
+                                <td>Não há atividades</td>
+                            </tr>
+                        </tbody>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>

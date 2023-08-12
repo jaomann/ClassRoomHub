@@ -7,5 +7,7 @@ namespace ClassroomHub.Core.Contracts.Services
 {
     public interface IStudentServices : IBaseServices<Student>
     {
+        IEnumerable<Student> GetFullStudents();
+        Student GetStudentByName(string name);
     }
 }

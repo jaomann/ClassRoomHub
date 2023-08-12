@@ -1,0 +1,54 @@
+﻿@using ClassRoomHub.Web.ViewModels;
+@model IEnumerable<ActivityViewModel>
+@{
+    ViewData["Title"] = "Atividades";
+}
+<div class="ActivityContainer">
+    <div class="Activity">
+        <h2 class="text-center">Atividades</h2>
+        <div class="itens">
+            <table class="table table-borderless table-dark">
+                <thead>
+                    <tr>
+                        <th>Titulo</th>
+                        <th>Pontos</th>
+                        <th>Entrega</th>
+                        <th>Descrição</th>
+                        <th>Modulo</th>
+                    </tr>
+                </thead>
+                @if (Model.Any())
+                {
+                    foreach (var activity in Model)
+                    {
+                        <tbody>
+                            <tr>
+                                <td>@Html.DisplayFor(x => activity.Title)</td>
+                                <td>@Html.DisplayFor(x => activity.Score)</td>
+                                <td>@Html.DisplayFor(x => activity.DueDate)</td>
+                                <td>@Html.DisplayFor(x => activity.Description)</td>
+                                <td>@Html.DisplayFor(x => activity.Module.Name)</td>
+                            </tr>
+                        </tbody>
+                    }        
+                }
+                else
+                {
+                    <tbody>
+                        <tr>
+                            <td>Não há atividades</td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+            <div class="row justify-content-betweenn">
+                <div class="col-md-6">
+                    <partial name="_create" model="new ActivityViewModel()" />
+                </div>
+                <div class="col-md-6">
+                    <a type="button" style="width:120px; margin-left:50%;" class="btn btn-warning"asp-action="Correct">Corrigir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

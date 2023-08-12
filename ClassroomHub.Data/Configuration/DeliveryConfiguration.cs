@@ -15,10 +15,7 @@ namespace ClassroomHub.Data.Configuration
             builder.ToTable("Entregas");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.SubmissionDate).IsRequired();
-            builder.HasOne(x => x.Grade)
-                   .WithOne(x => x.Delivery)
-                   .HasForeignKey<Grade>(x => x.DeliveryId)
-                   .OnDelete(DeleteBehavior.Cascade);
+            builder.Property(x => x.Score).IsRequired();
         }
     }
 }

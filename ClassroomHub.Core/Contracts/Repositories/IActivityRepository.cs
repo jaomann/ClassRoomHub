@@ -6,6 +6,6 @@ using System.Text;
 namespace ClassroomHub.Core.Contracts.Repositories
 {
     public interface IActivityRepository : IBaseRepository<Activity>
-    {
+    { 
     }
 }

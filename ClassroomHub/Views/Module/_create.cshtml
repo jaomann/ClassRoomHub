@@ -1,0 +1,78 @@
+﻿@using ClassroomHub.Web.ViewModels;
+@model ModuleViewModel;
+
+<div class="row">
+    <div class="col-4 mt-2 ">
+        <button type="button" data-toggle="modal" data-target="#createModule"><i class="fa fa-plus" style="padding:5px; width:120px;"></i></button>
+    </div>
+</div>
+
+<div class="modal fade" id="createModule" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title">Cadastrar Modulo</h5>
+                <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                    <span style="text-decoration: none; color: black;" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @{
+                var teachers = (SelectList)ViewBag.Teachers;
+                if (!teachers.Any())
+                {
+                    <div class="modal-body">
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <span class="text-danger">Não há professores cadastrados, adicione um no botão abaixo.</span>
+                            </div>
+                        </div>
+                        <div class="modal-footer mt-2">
+                            <a asp-action="Index" asp-controller="Teacher" type="button" class="btn btn-secondary">Redirect</a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    
+                <form method="post" asp-action="Create">
+                    <div class="modal-body">
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(x => x.Name, new{Placeholder = "Insira o nome do modulo", Atrribute="width:100%", @class="form-control"})
+                                @Html.ValidationMessageFor(x => x.Name)
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label asp-for="Start"></label>
+                                @Html.TextBoxFor(x => x.Start, new{@class = "form-control", type="Date"})
+                                @Html.ValidationMessageFor(x => x.Start)
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="End"></label>
+                                @Html.TextBoxFor(x => x.End, new{@class = "form-control", type="Date"})
+                                @Html.ValidationMessageFor(x => x.End)
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.Hours, new{@class="form-control mt-2", Placeholder = "Horas"})
+                                @Html.ValidationMessageFor(x => x.Hours)
+                            </div>
+                            <div class="col-md-8">
+                                @Html.DropDownListFor(x => x.TeacherId, teachers, "Selecione o professor", new{@class="form-control mt-2"})
+                                @Html.ValidationMessageFor(x => x.TeacherId)
+                            </div>
+                        </div>
+                        <div class="modal-footer mt-2">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-outline-success">Save changes</button>
+                        </div>
+                    </div>
+                </form>
+                }
+            }
+           
+        </div>
+    </div>
+</div>

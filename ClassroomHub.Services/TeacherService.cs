@@ -17,5 +17,10 @@ namespace ClassroomHub.Services
         {
             return _teacherRepository.GetFullTeacher();
         }
+
+        public Teacher GetTeacherByName(string name)
+        {
+            return _teacherRepository.GetTeacherByName(name);
+        }
     }
 }

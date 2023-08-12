@@ -1,0 +1,23 @@
+﻿@model Tuple<Guid, string>;
+<div class="modal fade" id="@Model.Item2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="removeConfirmationlLabel">Tem certeza?</h5>
+                <button type="button" class="close btn-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-2">
+                    <div class="col-md-12 text-center">
+                        <span class="text-danger">A deleção não tem volta.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <a asp-action="Delete"asp-route-id="@Model.Item1" class="btn btn-outline-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
