@@ -1,6 +1,6 @@
-﻿@using ClassRoomHub.Web.ViewModels;
-@using ClassroomHub.Web.ViewModels;
-@model Tuple<ActivityViewModel, int>
+﻿@using ClassroomHub.Web.ViewModels;
+@model DeliveryViewModel;
+
 
 <div class="row">
     <div class="col-4 mt-2 ">
@@ -12,7 +12,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
-                <h5 class="modal-title">Solução @Model.Item1.Title</h5>
+                <h5 class="modal-title">Solução</h5>
                 <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
                     <span style="text-decoration: none; color: black;" aria-hidden="true">&times;</span>
                 </button>
@@ -20,18 +20,22 @@
 
             <form method="post" asp-action="Correct">
                 @{
-                    var atividade = Model.Item1;
-                    var score = Model.Item2;
+                    var entrega = Model;
                     <div class="modal-body">
                             <div clas="row mt-3">
                                 <div class="col-md-12">
-                                    @Html.DisplayNameFor(x => atividade.Solution)
-                                    @Html.TextAreaFor(x => atividade.Solution, new{@class="form-control mt-3", @readonly=true})
+                                    @Html.DisplayNameFor(x => entrega.Solution)
+                                    @Html.TextAreaFor(x => entrega.Solution, new{@class="form-control mt-3", @readonly=true})
                                 </div>
                             </div>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    @Html.TextBoxFor(x => score, new{type="Number", Placeholder="Avalie",@class="form-control mt-3"})
+                                @Html.TextBoxFor(x => entrega.DueDate, new{Placeholder="Data de entrega",@class="form-control mt-3",@readonly=true})
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                @Html.TextBoxFor(x => entrega.Score, new{type="Number", Placeholder="Avalie",@class="form-control mt-3",@readonly=true})
                                 </div>
                             </div>
                     </div>

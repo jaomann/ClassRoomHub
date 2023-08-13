@@ -13,6 +13,16 @@
     <Compile Remove="Migrations\20230630223245_Foreign_Key_Classes.Designer.cs" />
     <Compile Remove="Migrations\20230714234813_initial.cs" />
     <Compile Remove="Migrations\20230714234813_initial.Designer.cs" />
+    <Compile Remove="Migrations\20230813140923_alterações_de_entrega.cs" />
+    <Compile Remove="Migrations\20230813140923_alterações_de_entrega.Designer.cs" />
+    <Compile Remove="Migrations\20230813141331_alterações_de_entrega.cs" />
+    <Compile Remove="Migrations\20230813141331_alterações_de_entrega.Designer.cs" />
+    <Compile Remove="Migrations\20230813141603_alterações_de_entrega.cs" />
+    <Compile Remove="Migrations\20230813141603_alterações_de_entrega.Designer.cs" />
+    <Compile Remove="Migrations\20230813141726_alterações_de_entrega.cs" />
+    <Compile Remove="Migrations\20230813141726_alterações_de_entrega.Designer.cs" />
+    <Compile Remove="Migrations\20230813141851_alterações_de_entrega.cs" />
+    <Compile Remove="Migrations\20230813141851_alterações_de_entrega.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

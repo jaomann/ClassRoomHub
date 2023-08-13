@@ -24,7 +24,7 @@ namespace ClassroomHub.Web.AutoMapper
             CreateMap<ActivityViewModel, Activity>().ReverseMap();
             CreateMap<ActivityCompair, ActivityCompairVM>().ReverseMap();
             CreateMap<ModuleViewModel, Module>().ReverseMap();
-            CreateMap<DeliveryViewModel, Delivery>().ReverseMap();
+            CreateMap<Delivery, DeliveryViewModel>().ReverseMap();
         }
     }
 }

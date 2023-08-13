@@ -1,14 +1,16 @@
 ﻿using System;
-using System.Diagnostics;
+using ClassroomHub.Core.Entities;
 
 namespace ClassroomHub.Web.ViewModels
 {
     public class DeliveryViewModel
     {
-        
-        public DateTime SubmissionDate { get; set; }
+        public Guid Id { get; set; }
+        public DateTime DueDate { get; set; }
         public Guid ActivityId { get; set; }
-        public Activity Activity { get; set; }
         public float Score { get; set; }
+        public string Solution { get; set; }
+        public string ModuleName { get; set; }
+        public Guid StudentId { get; set; }
     }
 }

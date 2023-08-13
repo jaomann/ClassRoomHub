@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ClassroomHub.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class alterações_de_entrega : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,9 +27,9 @@ namespace ClassroomHub.Data.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     Email = table.Column<string>(maxLength: 80, nullable: false),
                     Birthday = table.Column<DateTime>(nullable: false),
-                    Password = table.Column<string>(type: "CHAR(20)", nullable: false),
-                    StudentID = table.Column<Guid>(nullable: false),
-                    TeacherID = table.Column<Guid>(nullable: false)
+                    Password = table.Column<string>(maxLength: 100, nullable: false),
+                    StudentId = table.Column<Guid>(nullable: false),
+                    TeacherId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -64,8 +64,9 @@ namespace ClassroomHub.Data.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Surname = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: false)
+                    Specialization = table.Column<string>(nullable: true),
+                    UserId = table.Column<Guid>(nullable: false),
+                    ModuleId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -83,9 +84,9 @@ namespace ClassroomHub.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(maxLength: 50, nullable: false),
-                    Surname = table.Column<string>(maxLength: 50, nullable: false),
-                    Email = table.Column<string>(maxLength: 50, nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    Surname = table.Column<string>(nullable: false),
+                    Email = table.Column<string>(nullable: true),
                     Birthday = table.Column<DateTime>(nullable: false),
                     UserId = table.Column<Guid>(nullable: false),
                     ClassId = table.Column<Guid>(nullable: false)
@@ -117,7 +118,8 @@ namespace ClassroomHub.Data.Migrations
                     Hours = table.Column<int>(nullable: false),
                     Start = table.Column<DateTime>(nullable: false),
                     End = table.Column<DateTime>(nullable: false),
-                    TeacherId = table.Column<Guid>(nullable: false)
+                    TeacherId = table.Column<Guid>(nullable: false),
+                    ActivityID = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -131,32 +133,27 @@ namespace ClassroomHub.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Atividade",
+                name: "Activities",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Title = table.Column<string>(nullable: false),
-                    Description = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: false),
                     DueDate = table.Column<DateTime>(nullable: false),
-                    GradePoints = table.Column<int>(nullable: false),
+                    Score = table.Column<int>(nullable: false),
+                    Solution = table.Column<string>(nullable: true),
                     ModuleId = table.Column<Guid>(nullable: false),
-                    StudentId = table.Column<Guid>(nullable: true)
+                    DeliveryId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Atividade", x => x.Id);
+                    table.PrimaryKey("PK_Activities", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Atividade_Module_ModuleId",
+                        name: "FK_Activities_Module_ModuleId",
                         column: x => x.ModuleId,
                         principalTable: "Module",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Atividade_Student_StudentId",
-                        column: x => x.StudentId,
-                        principalTable: "Student",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -164,19 +161,26 @@ namespace ClassroomHub.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    SubmissionDate = table.Column<DateTime>(nullable: false),
+                    DueDate = table.Column<DateTime>(nullable: false),
                     ActivityId = table.Column<Guid>(nullable: false),
-                    GradeId = table.Column<Guid>(nullable: false)
+                    Score = table.Column<float>(nullable: false),
+                    Solution = table.Column<string>(nullable: true),
+                    ModuleName = table.Column<string>(nullable: true),
+                    StudentId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Entregas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Entregas_Atividade_ActivityId",
+                        name: "FK_Entregas_Activities_ActivityId",
                         column: x => x.ActivityId,
-                        principalTable: "Atividade",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalTable: "Activities",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Entregas_Student_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "Student",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -199,19 +203,19 @@ namespace ClassroomHub.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Atividade_ModuleId",
-                table: "Atividade",
+                name: "IX_Activities_ModuleId",
+                table: "Activities",
                 column: "ModuleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Atividade_StudentId",
-                table: "Atividade",
-                column: "StudentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Entregas_ActivityId",
                 table: "Entregas",
                 column: "ActivityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Entregas_StudentId",
+                table: "Entregas",
+                column: "StudentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Module_TeacherId",
@@ -221,8 +225,7 @@ namespace ClassroomHub.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Notas_DeliveryId",
                 table: "Notas",
-                column: "DeliveryId",
-                unique: true);
+                column: "DeliveryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Student_ClassId",
@@ -256,25 +259,25 @@ namespace ClassroomHub.Data.Migrations
                 name: "Entregas");
 
             migrationBuilder.DropTable(
-                name: "Atividade");
-
-            migrationBuilder.DropTable(
-                name: "Module");
+                name: "Activities");
 
             migrationBuilder.DropTable(
                 name: "Student");
 
             migrationBuilder.DropTable(
-                name: "Teacher");
+                name: "Module");
 
             migrationBuilder.DropTable(
                 name: "Turmas");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Teacher");
 
             migrationBuilder.DropTable(
                 name: "Cursos");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

@@ -7,5 +7,7 @@ namespace ClassroomHub.Core.Contracts.Services
 {
     public interface IDeliveryServices : IBaseServices<Delivery>
     {
+        IEnumerable<Delivery> GetAllDone();
+        IEnumerable<Delivery> GetAllCorrect();
     }
 }

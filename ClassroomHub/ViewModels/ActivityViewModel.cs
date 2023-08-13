@@ -20,7 +20,8 @@ namespace ClassRoomHub.Web.ViewModels
         public int Score { get; set; }
         [DisplayName("Solução")]
         public string Solution { get; set; }
-        public Module Module { get; set; }
+        
+        [Required]
         public Guid ModuleId { get; set; }
 
     }

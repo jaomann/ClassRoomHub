@@ -23,18 +23,18 @@
                     @if (modules.Any())
                     {
                         <div class="modal-body">
-                            <div clas="row mt-3">
-                                <div class="col-md-12"> 
-                                    @Html.DisplayNameFor(x => x.Description)
-                                    @Html.TextBoxFor(x => x.Description, new{Placeholder = "Titulo da atividade", Atrribute="width:100%", @class="form-control"})
-                                    <span asp-validation-for="Description" class="text-danger"></span>
-                                </div>
-                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     @Html.DisplayNameFor(x => x.Title)
                                     @Html.TextBoxFor(x => x.Title, new{Placeholder = "Titulo da atividade", Attribute="width:100%", @class="form-control"})
                                     <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div clas="row mt-3">
+                                <div class="col-md-12"> 
+                                    @Html.DisplayNameFor(x => x.Description)
+                                    @Html.TextAreaFor(x => x.Description, new{Placeholder = "Descriçao da atividade", Atrribute="width:100%", @class="form-control"})
+                                    <span asp-validation-for="Description" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="row mt-3">

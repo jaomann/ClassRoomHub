@@ -12,8 +12,8 @@ namespace ClassroomHub.Core.Entities
         public int Score { get; set; }
         public string Solution { get; set; }
         public Guid ModuleId { get; set; }
-        public Module Module { get; set; }
-
+        public Guid DeliveryId { get; set; }
+        public IEnumerable<Delivery> deliveries { get; set; }
 
     }
 }

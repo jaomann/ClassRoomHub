@@ -23,7 +23,7 @@ namespace ClassroomHub.Services
 
         public IEnumerable<Activity> GetAllDone()
         {
-            return this.GetAll().Where(x => x.Solution != null);
+            throw new NotImplementedException();
         }
     }
 }

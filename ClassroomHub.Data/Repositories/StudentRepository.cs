@@ -21,7 +21,7 @@ namespace ClassroomHub.Data.Repositories
 
         public Student GetStudentByName(string name)
         {
-            return Get().Where(x => x.Name == name).FirstOrDefault();
+            return Get().Where(x => x.Name.Contains(name)).FirstOrDefault();
         }
     }
 }

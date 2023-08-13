@@ -10,9 +10,9 @@ namespace ClassroomHub.Data.Configuration
         {
             builder.ToTable("Student");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
-            builder.Property(x => x.Surname).IsRequired().HasMaxLength(50);
-            builder.Property(x => x.Email).HasMaxLength(50);
+            builder.Property(x => x.Name).IsRequired();
+            builder.Property(x => x.Surname).IsRequired();
+            builder.Property(x => x.Email);
             builder.Property(x => x.Birthday).IsRequired();
             builder.HasOne(x => x.User).WithOne(x => x.Student).HasForeignKey<Student>(x => x.UserId);
 

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 
 namespace ClassRoomHub.Web.Controllers
 {
@@ -59,35 +60,31 @@ namespace ClassRoomHub.Web.Controllers
         }
         public IActionResult Details(Guid id)
         {
-            var modules = _mapper.Map<IEnumerable<ModuleViewModel>>(_moduleServices.GetAll());
-            ViewBag.Modules = new SelectList(modules, "Id", "Name");
+            var students = _mapper.Map<IEnumerable<StudentViewModel>>(_studentServices.GetFullStudents());
+            ViewBag.Students = new SelectList(students, "Id", "Name");
             var atividade = _mapper.Map<ActivityViewModel>(_activityServices.GetById(id));
-           return View(atividade);
+            TempData["Atividade"] = atividade;
+            
+           return View(new DeliveryViewModel());
         }
         [HttpPost]
-        public IActionResult Details(ActivityViewModel solutioned)
+        public IActionResult Details(DeliveryViewModel solutioned)
         {
-            var atividade = _mapper.Map<Activity>(solutioned);
-           _activityServices.Update(atividade);
-           return RedirectToAction(nameof(Index));
+            solutioned.DueDate = DateTime.Now.Date;
+            _deliveryServices.Create(_mapper.Map<Delivery>(solutioned));
+           return RedirectToAction(nameof(studentArea));
         }
         public IActionResult Correct()
         {
             var modules = _mapper.Map<IEnumerable<ModuleViewModel>>(_moduleServices.GetAll());
             ViewBag.Modules = new SelectList(modules, "Id", "Name");
-            var atividades = _mapper.Map<IEnumerable<ActivityViewModel>>(_activityServices.GetAllDone());
-            return View(atividades);
+            var entregas = _mapper.Map<IEnumerable<DeliveryViewModel>>(_deliveryServices.GetAllDone());
+            return View(entregas);
         }
         [HttpPost]
-        public IActionResult Correct(Tuple<ActivityViewModel, int> entity)
+        public IActionResult Correct(DeliveryViewModel entity)
         {
-            
-            var atividade = entity.Item1;
-            var entrega = new DeliveryViewModel();
-            entrega.Score = entity.Item2;
-            entrega.ActivityId = atividade.Id;
-            entrega.SubmissionDate = atividade.DueDate;
-            _deliveryServices.Create(_mapper.Map<Delivery>(entrega));
+            _deliveryServices.Update(_mapper.Map<Delivery>(entity));
            return RedirectToAction(nameof(Index));
         }
     }
