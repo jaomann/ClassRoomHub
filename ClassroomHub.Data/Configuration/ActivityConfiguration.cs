@@ -17,6 +17,7 @@ namespace ClassroomHub.Data.Configuration
             builder.Property(x => x.Description).IsRequired();
             builder.Property(x => x.DueDate).IsRequired();
             builder.Property(x => x.Score).IsRequired();
+            builder.HasOne(x => x.Module).WithMany(x => x.Activities).HasForeignKey(x => x.ModuleId);
         }
     }
 }

@@ -6,6 +6,7 @@ namespace ClassroomHub.Core.Entities
 {
     public class Delivery : EntityBase
     {
+        public string Description { get; set; }
         public DateTime DueDate { get; set; }
         public Guid ActivityId { get; set; }
         public Activity Activity { get; set; }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ClassroomHub.Data.Migrations
 {
-    public partial class alterações_de_entrega : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -142,8 +142,7 @@ namespace ClassroomHub.Data.Migrations
                     DueDate = table.Column<DateTime>(nullable: false),
                     Score = table.Column<int>(nullable: false),
                     Solution = table.Column<string>(nullable: true),
-                    ModuleId = table.Column<Guid>(nullable: false),
-                    DeliveryId = table.Column<Guid>(nullable: false)
+                    ModuleId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -161,10 +160,11 @@ namespace ClassroomHub.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
                     DueDate = table.Column<DateTime>(nullable: false),
                     ActivityId = table.Column<Guid>(nullable: false),
                     Score = table.Column<float>(nullable: false),
-                    Solution = table.Column<string>(nullable: true),
+                    Solution = table.Column<string>(nullable: false),
                     ModuleName = table.Column<string>(nullable: true),
                     StudentId = table.Column<Guid>(nullable: false)
                 },
@@ -175,7 +175,8 @@ namespace ClassroomHub.Data.Migrations
                         name: "FK_Entregas_Activities_ActivityId",
                         column: x => x.ActivityId,
                         principalTable: "Activities",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Entregas_Student_StudentId",
                         column: x => x.StudentId,

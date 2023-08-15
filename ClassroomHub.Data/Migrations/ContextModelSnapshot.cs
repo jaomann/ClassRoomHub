@@ -25,9 +25,6 @@ namespace ClassroomHub.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("DeliveryId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -110,6 +107,9 @@ namespace ClassroomHub.Data.Migrations
                     b.Property<Guid>("ActivityId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("datetime2");
 
@@ -120,6 +120,7 @@ namespace ClassroomHub.Data.Migrations
                         .HasColumnType("real");
 
                     b.Property<string>("Solution")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("StudentId")
@@ -304,9 +305,9 @@ namespace ClassroomHub.Data.Migrations
             modelBuilder.Entity("ClassroomHub.Core.Entities.Delivery", b =>
                 {
                     b.HasOne("ClassroomHub.Core.Entities.Activity", "Activity")
-                        .WithMany("deliveries")
+                        .WithMany("Deliveries")
                         .HasForeignKey("ActivityId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ClassroomHub.Core.Entities.Student", "Student")

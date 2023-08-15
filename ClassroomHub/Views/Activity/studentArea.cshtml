@@ -1,25 +1,23 @@
-﻿@using ClassRoomHub.Web.ViewModels;
+﻿
+@using ClassRoomHub.Web.ViewModels;
 @model IEnumerable<ActivityViewModel>
 @{
     ViewData["Title"] = "Atividades";
 }
 <div class="ActivityContainer">
-    <div class="Activity">
+    <div style="width:150vh;"class="Activity">
     <h2 class="text-center">Atividades</h2>
         <div style="background-color:rgb(255, 255, 255);color: rgb(0,0,0);padding:5px;border-radius:10px;">
-            @{
-                if (Model.Any())
+                @if (Model.Any())
                 {
-                    foreach(var atividade in Model)
+                    @foreach(var atividade in Model)
                     {
                        <h5 style=" font-size:25px;text-align:initial;margin-top:10px;padding:5px;color: #fff;border-radius:5px;background-color: rgb(0, 0, 0)">@Html.DisplayFor(x=> atividade.Title)</h5>
                         <p style="font-size:15px;font-style:italic;text-align:initial;color: #000;border-radius:5px;">@Html.DisplayFor(x=>atividade.DueDate)</p>
                         <p style="font-size:15px;font-style:italic;color: #000;border-radius:5px;">@Html.DisplayFor(x=> atividade.Score) pontos</p>
-                       <div class=""></div>
-                        <a type="button" class="btn btn-outlined-success" asp-route-id=@atividade.Id asp-action="Details">Iniciar</a>
+                       <a class="btn btn-success" asp-route-id="@atividade.Id" asp-action="Details">Iniciar</a>
                     }
                 }
-            }
         </div>
     </div>
 </div>

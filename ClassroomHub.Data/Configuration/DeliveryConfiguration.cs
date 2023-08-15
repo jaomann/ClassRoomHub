@@ -18,8 +18,10 @@ namespace ClassroomHub.Data.Configuration
             builder.Property(x => x.DueDate).IsRequired();
             builder.Property(x => x.Score).IsRequired();
             builder.Property(x => x.ModuleName);
+            builder.Property(x => x.Description);
+            builder.Property(x => x.Solution).IsRequired();
+            builder.HasOne(x => x.Activity).WithMany(x => x.Deliveries).HasForeignKey(x => x.ActivityId);
             builder.HasOne(x => x.Student).WithMany(x => x.deliveries).HasForeignKey(x => x.StudentId).OnDelete(DeleteBehavior.NoAction);
-            builder.HasOne(x => x.Activity).WithMany(x =>x.deliveries).HasForeignKey(x => x.ActivityId).OnDelete(DeleteBehavior.NoAction);
 
         }
     }

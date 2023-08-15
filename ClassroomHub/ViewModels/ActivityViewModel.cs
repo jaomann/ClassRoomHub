@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using ClassroomHub.Core.Entities;
+using System.Collections.Generic;
 
 namespace ClassRoomHub.Web.ViewModels
 {
@@ -20,9 +21,9 @@ namespace ClassRoomHub.Web.ViewModels
         public int Score { get; set; }
         [DisplayName("Solução")]
         public string Solution { get; set; }
-        
-        [Required]
         public Guid ModuleId { get; set; }
+        public Module Module { get; set; }
+        public IEnumerable<Delivery> Deliveries { get; set; }
 
     }
 }

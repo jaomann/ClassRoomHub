@@ -60,17 +60,15 @@ namespace ClassRoomHub.Web.Controllers
         }
         public IActionResult Details(Guid id)
         {
+            var atividade = _mapper.Map<ActivityViewModel>(_activityServices.GetById(id));
             var students = _mapper.Map<IEnumerable<StudentViewModel>>(_studentServices.GetFullStudents());
             ViewBag.Students = new SelectList(students, "Id", "Name");
-            var atividade = _mapper.Map<ActivityViewModel>(_activityServices.GetById(id));
-            TempData["Atividade"] = atividade;
             
-           return View(new DeliveryViewModel());
+           return View(_mapper.Map<DeliveryViewModel>(atividade));
         }
         [HttpPost]
         public IActionResult Details(DeliveryViewModel solutioned)
         {
-            solutioned.DueDate = DateTime.Now.Date;
             _deliveryServices.Create(_mapper.Map<Delivery>(solutioned));
            return RedirectToAction(nameof(studentArea));
         }

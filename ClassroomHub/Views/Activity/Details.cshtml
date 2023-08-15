@@ -6,30 +6,22 @@
     <div class="edit-content">
         <h5>Enviar atividade</h5>
         @{
-            var activity = (ActivityViewModel)TempData["Atividade"];
             var students = (SelectList)ViewBag.Students;
-            Model.ActivityId = activity.Id;
         }
 
-            <div class="row">
-                <div class="col-md-12">
-                    @Html.DisplayNameFor(x => activity.Title)
-                    @Html.TextBoxFor(x => activity.Title, new{Placeholder = "Titulo da atividade", Attribute="width:100%", @class="form-control", @readonly=true})
-                </div>
-            </div>
+        <form method="post" asp-action="Details" asp-controller="Activity">
             <div clas="row mt-3">
                 <div class="col-md-12">
-                    @Html.DisplayNameFor(x => activity.Description)
-                    @Html.TextAreaFor(x => activity.Description, new{Placeholder = "Descrição da atividade", Atrribute="width:100%", @class="form-control", @readonly=true})
+                    @Html.DisplayNameFor(x => x.Description)
+                    @Html.TextAreaFor(x => x.Description, new{Placeholder = "Descrição da atividade", Atrribute="width:100%", @class="form-control", @readonly=true})
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-6">
-                    @Html.DisplayNameFor(x => activity.Score)
-                    @Html.TextBoxFor(x => activity.Score, new{Placeholder = "Quanto vale?", Attribute="width:100%", @class="form-control", @readonly=true})
+                    @Html.DisplayNameFor(x => x)
+                    @Html.TextBoxFor(x => x.Score, new{Placeholder = "Quanto vale?", Attribute="width:100%", @class="form-control", @readonly=true})
                 </div>
             </div>
-        <form method="post" asp-action="Details" asp-controller="Activity">
             <div class="row">
                 <div style="background-color:white;" class="col-md-12 mt-4 p-2">
                     <h5>Informe aqui a solução</h5>
@@ -40,7 +32,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h5>Você é?</h5>
-                    @Html.DropDownListFor(x => x.StudentId, students, "Seu nome: ", new{@class="form-control"})
+                    @Html.DropDownListFor(x => x.StudentId, students, "Selecione seu nome: ", new{@class="form-control"})
                 </div>
             </div>
         </form>

@@ -51,7 +51,7 @@ namespace ClassroomHub
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Login}/{action=Index}/{id?}");
+                    pattern: "{controller=Register}/{action=Index}/{id?}");
             });
         }
     }
